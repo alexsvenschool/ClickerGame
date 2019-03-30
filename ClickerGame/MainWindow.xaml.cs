@@ -12,17 +12,27 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace ClickerGame
-{
-    /// <summary>
-    /// Interaktionslogik für MainWindow.xaml
-    /// </summary>
+{    
     public partial class MainWindow : Window
     {
+        public float score = 0;
+        public float scorePerSecond = 0;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            DispatcherTimer fps = new DispatcherTimer();
+            fps.Interval = TimeSpan.FromSeconds(1 / Properties.Settings.Default.Hertz);
+            fps.Tick += UpdateFrame;
+            fps.Start();
+        }
+
+        private void UpdateFrame(object sender, EventArgs e)
+        {            
         }
     }
 }
