@@ -1,12 +1,138 @@
-﻿<Window x:Class="ClickerGame.MainWindow"
+﻿<Window x:Name="winMain" x:Class="PretzelClicker.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ClickerGame"
+        xmlns:local="clr-namespace:PretzelClicker"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Pretzel Clicker" Height="800" Width="1200" Loaded="WinMain_Loaded" Closed="WinMain_Closed" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <!--Style for the ClickField-->
+        <Style x:Key="ClickField" TargetType="Button">
+            <Setter Property="Width" Value="730"/>
+            <Setter Property="Height" Value="680"/>
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border"
+                                BorderThickness="6"
+                                Padding="6" 
+                                BorderBrush="DarkGray" 
+                                CornerRadius="6"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="black" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--Style for the Menue-->
+        <Style x:Key="Menue" TargetType="Button">
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                        <GradientStop Color="#FFEBEBEB"/>
+                        <GradientStop Color="#FF7C1717" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--Style for the Upgrade Button-->
+        <Style x:Key="UpgradeButton" TargetType="Button">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="FontFamily" Value="Showcard Gothic"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Height" Value="60"/>
+            <Setter Property="Background" Value="WhiteSmoke"/>
+        </Style>
+
+        <!--Style for the Costs label-->
+        <Style x:Key="CostsLable" TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="FontFamily" Value="Showcard Gothic"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="center"/>
+            <Setter Property="Height" Value="60"/>
+            <Setter Property="Background" Value="WhiteSmoke"/>
+        </Style>
+
+        <!--Style for the Pretzel Label-->
+        <Style x:Key="PretzelLabel" TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Height" Value="41"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontFamily" Value="Showcard Gothic"/>
+        </Style>
+    </Window.Resources>
+    <Window.Background>
+        <ImageBrush ImageSource="Images/background.jpg"/>
+    </Window.Background>
+
     <Grid>
-        
+        <Grid HorizontalAlignment="Left" Height="420" Margin="10,70,0,0" VerticalAlignment="Top" Width="180">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+            <Label Style="{StaticResource CostsLable}" x:Name="lblUpgrade" Content="Upgrade" Grid.Row="0"/>
+            <Button Style="{StaticResource UpgradeButton}" x:Name="btnGrandma" Content="Grandma" Grid.Row="1" Click="BtnGrandma_Click" />
+            <Button Style="{StaticResource UpgradeButton}" x:Name="btnCafeteria" Content="Cafeteria" Grid.Row="2" Click="BtnCafeteria_Click"/>
+            <Button Style="{StaticResource UpgradeButton}" x:Name="btnBakery" Content="Bakery" Grid.Row="3" Click="BtnBakery_Click"/>
+            <Button Style="{StaticResource UpgradeButton}" x:Name="btnFactory" Content="Factory" Grid.Row="4" Click="BtnFactory_Click" />
+            <Button Style="{StaticResource UpgradeButton}" x:Name="btnAutoClick" Content="AutoClicker" Grid.Row="5" Click="BtnAutoClick"/>
+        </Grid>
+        <Grid HorizontalAlignment="Left" Height="420" Margin="200,70,0,60" VerticalAlignment="Top" Width="180">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+            <Label Style="{StaticResource CostsLable}" x:Name="lblCosts" Content="Costs" Grid.Row="0"/>
+            <Label Style="{StaticResource CostsLable}" x:Name="lblGrandmaCosts" Content="200" Grid.Row="1"/>
+            <Label Style="{StaticResource CostsLable}" x:Name="lblCafeteriaCosts" Content="500" Grid.Row="2" />
+            <Label Style="{StaticResource CostsLable}" x:Name="lblBakeryCosts" Content="10000" Grid.Row="3"/>
+            <Label Style="{StaticResource CostsLable}" x:Name="lblFactoryCosts" Content="100000" Grid.Row="4"/>
+            <Label Style="{StaticResource CostsLable}" x:Name="lblAutoClickerCosts" Content="10" Grid.Row="5" />
+        </Grid>
+        <Grid>
+            <Button Style="{StaticResource Menue}" x:Name="btnPlay" Content="Spielen" Margin="0,0,0,130" Click="BtnPlay_Click" Visibility="Hidden"/>
+            <Button Style="{StaticResource Menue}" x:Name="btnOptions" Content="Optionen" Margin="0,0,0,70" Visibility="Hidden"/>
+            <Button Style="{StaticResource Menue}" x:Name="btnExit" Content="Exit" Margin="0,0,0,10" Visibility="Hidden"/>
+        </Grid>
+
+        <Label Style="{StaticResource PretzelLabel}" x:Name="lblPretzel" Content="Pretzel: 0" Margin="10,10,0,0" AutomationProperties.IsColumnHeader="True" Width="370"/>
+        <Label Style="{StaticResource PretzelLabel}" x:Name="lblAutoPretzel" Content="Pretzel per second: " Margin="450,10,0,0" AutomationProperties.IsColumnHeader="True" Width="700"/>
+        <Grid HorizontalAlignment="Right" Height="680" Margin="0,75,10,0" VerticalAlignment="Top" Width="730" >
+            <Button Style="{StaticResource ClickField}" x:Name="btnClickField" Click="BtnClickField_Click" Cursor="Hand">
+                <Button.Background>
+                    <ImageBrush ImageSource="Images/Bretzel.png" />
+                </Button.Background>
+            </Button>
+        </Grid>
     </Grid>
 </Window>
