@@ -101,5 +101,8 @@
   <ItemGroup>
     <Folder Include="Sounds\" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Bretzel.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

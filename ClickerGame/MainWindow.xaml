@@ -50,29 +50,60 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
         <!--Style for the Upgrade Button-->
         <Style x:Key="UpgradeButton" TargetType="Button">
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
             <Setter Property="FontFamily" Value="Showcard Gothic"/>
-            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Margin" Value="0,8,0,0"/>
             <Setter Property="FontSize" Value="24"/>
             <Setter Property="Height" Value="60"/>
             <Setter Property="Background" Value="WhiteSmoke"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border"
+                                BorderThickness="3"
+                                Padding="6" 
+                                BorderBrush="DarkGray" 
+                                CornerRadius="10"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="black" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
         <!--Style for the Costs label-->
         <Style x:Key="CostsLable" TargetType="Label">
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Margin" Value="0,8,0,0"/>
             <Setter Property="FontFamily" Value="Showcard Gothic"/>
-            <Setter Property="FontSize" Value="24"/>
             <Setter Property="FontSize" Value="24"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="center"/>
             <Setter Property="Height" Value="60"/>
             <Setter Property="Background" Value="WhiteSmoke"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Label">
+                        <Border Name="border"
+                                BorderThickness="3"
+                                Padding="6" 
+                                BorderBrush="DarkGray" 
+                                CornerRadius="10"
+                                Background="{TemplateBinding Background}">
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
         <!--Style for the Pretzel Label-->
@@ -83,41 +114,84 @@
             <Setter Property="FontSize" Value="24"/>
             <Setter Property="FontFamily" Value="Showcard Gothic"/>
         </Style>
+        <!--Style for Count PowerUp Label-->
+        <Style x:Key="PowerUpLabel" TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Margin" Value="0,8,0,0"/>
+            <Setter Property="FontFamily" Value="Showcard Gothic"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="center"/>
+            <Setter Property="Height" Value="60"/>
+            <Setter Property="Background" Value="WhiteSmoke"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Label">
+                        <Border Name="border"
+                                BorderThickness="3"
+                                Padding="6" 
+                                BorderBrush="DarkGray" 
+                                CornerRadius="5"
+                                Background="{TemplateBinding Background}">
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     <Window.Background>
         <ImageBrush ImageSource="Images/background.jpg"/>
     </Window.Background>
 
     <Grid>
-        <Grid HorizontalAlignment="Left" Height="420" Margin="10,70,0,0" VerticalAlignment="Top" Width="180" >
+        <Grid HorizontalAlignment="Left" Height="350" Margin="10,70,0,0" VerticalAlignment="Top" Width="180" >
             <Grid.RowDefinitions>
-                <RowDefinition Height="60"/>
-                <RowDefinition Height="60"/>
-                <RowDefinition Height="60"/>
-                <RowDefinition Height="60"/>
-                <RowDefinition Height="60"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
             </Grid.RowDefinitions>
             <Label Style="{StaticResource CostsLable}" x:Name="lblUpgrade" Content="Upgrade" Grid.Row="0"/>
-            <Button Style="{StaticResource UpgradeButton}" x:Name="btnGrandma" Content="Grandma" Grid.Row="1" />
-            <Button Style="{StaticResource UpgradeButton}" x:Name="btnCafeteria" Content="Cafeteria" Grid.Row="2"/>
-            <Button Style="{StaticResource UpgradeButton}" x:Name="btnBakery" Content="Bakery" Grid.Row="3"/>
-            <Button Style="{StaticResource UpgradeButton}" x:Name="btnFactory" Content="Factory" Grid.Row="4"/>
-            <Button Style="{StaticResource UpgradeButton}" x:Name="btnAutoClick" Content="AutoClicker" Grid.Row="5"/>
+            <Button Style="{StaticResource UpgradeButton}" x:Name="btnGrandma" Content="Grandma" Grid.Row="2"/>
+            <Button Style="{StaticResource UpgradeButton}" x:Name="btnCafeteria" Content="Cafeteria" Grid.Row="3"/>
+            <Button Style="{StaticResource UpgradeButton}" x:Name="btnBakery" Content="Bakery" Grid.Row="4"/>
+            <Button Style="{StaticResource UpgradeButton}" x:Name="btnFactory" Content="Factory" Grid.Row="5"/>
+            <Button Style="{StaticResource UpgradeButton}" x:Name="btnAutoClick" Content="AutoClicker" Grid.Row="1"/>
         </Grid>
-        <Grid HorizontalAlignment="Left" Height="420" Margin="200,70,0,60" VerticalAlignment="Top" Width="180">
+        <Grid>
+            <Grid HorizontalAlignment="Left" Height="350" Margin="195,70,0,60" VerticalAlignment="Top" Width="55">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                </Grid.RowDefinitions>
+                <Label Style="{StaticResource PowerUpLabel}" x:Name="lblPowerUpCount" Grid.Row="0"/>
+                <Label Style="{StaticResource PowerUpLabel}" x:Name="lblGrandmaCount" Grid.Row="1"/>
+                <Label Style="{StaticResource PowerUpLabel}" x:Name="lblCafeteriaCount" Grid.Row="2" />
+                <Label Style="{StaticResource PowerUpLabel}" x:Name="lblBakeryCount"  Grid.Row="3"/>
+                <Label Style="{StaticResource PowerUpLabel}" x:Name="lblFactoryCount" Grid.Row="4"/>
+                <Label Style="{StaticResource PowerUpLabel}" x:Name="lblAutoClickerCount" Grid.Row="5" />
+            </Grid>
+        </Grid>
+
+        <Grid HorizontalAlignment="Left" Height="350" Margin="255,70,0,60" VerticalAlignment="Top" Width="180">
             <Grid.RowDefinitions>
-                <RowDefinition Height="60"/>
-                <RowDefinition Height="60"/>
-                <RowDefinition Height="60"/>
-                <RowDefinition Height="60"/>
-                <RowDefinition Height="60"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
             </Grid.RowDefinitions>
-            <Label Style="{StaticResource CostsLable}" x:Name="lblCosts" Grid.Row="0"/>
+            <Label Style="{StaticResource CostsLable}" x:Name="lblCosts"  Content="Costs" Grid.Row="0"/>
             <Label Style="{StaticResource CostsLable}" x:Name="lblGrandmaCosts" Grid.Row="1"/>
-            <Label Style="{StaticResource CostsLable}" x:Name="lblCafeteriaCosts" Content="500" Grid.Row="2" />
-            <Label Style="{StaticResource CostsLable}" x:Name="lblBakeryCosts" Content="10000" Grid.Row="3"/>
-            <Label Style="{StaticResource CostsLable}" x:Name="lblFactoryCosts" Content="100000" Grid.Row="4"/>
-            <Label Style="{StaticResource CostsLable}" x:Name="lblAutoClickerCosts" Content="10" Grid.Row="5" />
+            <Label Style="{StaticResource CostsLable}" x:Name="lblCafeteriaCosts" Grid.Row="2" />
+            <Label Style="{StaticResource CostsLable}" x:Name="lblBakeryCosts"  Grid.Row="3"/>
+            <Label Style="{StaticResource CostsLable}" x:Name="lblFactoryCosts" Grid.Row="4"/>
+            <Label Style="{StaticResource CostsLable}" x:Name="lblAutoClickerCosts" Grid.Row="5" />
         </Grid>
         <Grid>
             <Button Style="{StaticResource Menue}" x:Name="btnPlay" Content="Spielen" Margin="0,0,0,130" Visibility="Hidden"/>
@@ -130,7 +204,7 @@
         <Grid HorizontalAlignment="Right" Height="680" Margin="0,75,10,0" VerticalAlignment="Top" Width="730" >
             <Button Style="{StaticResource ClickField}" x:Name="btnClickField" Cursor="Hand">
                 <Button.Background>
-                    <ImageBrush ImageSource="Images/background.jpg" />
+                    <ImageBrush ImageSource="Images/Bretzel.png" />
                 </Button.Background>
             </Button>
         </Grid>
