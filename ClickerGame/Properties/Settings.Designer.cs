@@ -25,7 +25,7 @@ namespace ClickerGame.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("60")]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
         public int Hertz {
             get {
                 return ((int)(this["Hertz"]));
