@@ -118,7 +118,7 @@
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="70"/>
-                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/> 
             </Grid.RowDefinitions>
             <Label Style="{StaticResource CostsLable}" x:Name="lblUpgrade" Content="Upgrade" Grid.Row="0"/>
             <Button Style="{StaticResource UpgradeButton}" x:Name="btnGrandma" Content="Grandma" Grid.Row="2" Click="Upgrade_Click"/>
