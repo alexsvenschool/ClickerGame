@@ -59,25 +59,7 @@
             <Setter Property="FontSize" Value="24"/>
             <Setter Property="Height" Value="60"/>
             <Setter Property="Background" Value="WhiteSmoke"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Name="border"
-                                BorderThickness="3"
-                                Padding="6" 
-                                BorderBrush="DarkGray" 
-                                CornerRadius="10"
-                                Background="{TemplateBinding Background}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="BorderBrush" Value="black" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
+         
         </Style>
 
         <!--Style for the Costs label-->
@@ -91,19 +73,6 @@
             <Setter Property="VerticalContentAlignment" Value="center"/>
             <Setter Property="Height" Value="60"/>
             <Setter Property="Background" Value="WhiteSmoke"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Label">
-                        <Border Name="border"
-                                BorderThickness="3"
-                                Padding="6" 
-                                BorderBrush="DarkGray" 
-                                CornerRadius="10"
-                                Background="{TemplateBinding Background}">
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
         </Style>
 
         <!--Style for the Pretzel Label-->
@@ -125,19 +94,6 @@
             <Setter Property="VerticalContentAlignment" Value="center"/>
             <Setter Property="Height" Value="60"/>
             <Setter Property="Background" Value="WhiteSmoke"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Label">
-                        <Border Name="border"
-                                BorderThickness="3"
-                                Padding="6" 
-                                BorderBrush="DarkGray" 
-                                CornerRadius="5"
-                                Background="{TemplateBinding Background}">
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
         </Style>
     </Window.Resources>
     <Window.Background>
