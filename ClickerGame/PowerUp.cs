@@ -15,6 +15,8 @@ namespace ClickerGame
         private readonly int baseCost;
         private readonly float baseScore;
         public int count = 0;
+        public bool purchasedUpgrade = false;
+        public bool upgradeAvailable = false;
 
         public PowerUp(Button btn, Label cost, Label count, int bCost, float bScore)
         {
@@ -35,7 +37,11 @@ namespace ClickerGame
                 count++;
                 MainWindow.scorePerSecond += ScorePerSecond();
             }
-            
+            if(count % 25 == 0 && count > 0)
+            {
+                upgradeAvailable = true;
+                purchasedUpgrade = false;
+            }            
         }
 
         public float ScorePerSecond()

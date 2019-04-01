@@ -22,14 +22,14 @@ namespace ClickerGame
         public static float scorePerSecond = Properties.Settings.Default.SPS;
         public static float scorePerClick = Properties.Settings.Default.SPC;
         private DateTime millis = DateTime.Now;
-        PowerUp grandma, cafetria, bakery, autoclicker, factory;       
+        PowerUp grandma, cafetria, bakery, autoclicker, factory;
 
         public MainWindow()
         {
             InitializeComponent();
 
             // Powerups initialisieren
-            autoclicker = new PowerUp(btnAutoClick, lblAutoClickerCosts, lblAutoClickerCount, 1, 0.1f);
+            autoclicker = new PowerUp(btnAutoClick, lblAutoClickerCosts, lblAutoClickerCount, 15, 0.1f);
             grandma = new PowerUp(btnGrandma, lblGrandmaCosts, lblGrandmaCount, 500, 5);
             cafetria = new PowerUp(btnCafeteria, lblCafeteriaCosts, lblCafeteriaCount, 10000, 50);
             bakery = new PowerUp(btnBakery, lblBakeryCosts, lblBakeryCount, 30000, 500);
@@ -57,7 +57,8 @@ namespace ClickerGame
             score += scorePerSecond * ((float)(DateTime.Now - millis).TotalMilliseconds / 1000);
             millis = DateTime.Now;
             lblPretzel.Content = "pretzel: " + (int)score;
-            lblAutoPretzel.Content = "pretzel per second: " + scorePerSecond;      
+            lblAutoPretzel.Content = "per second: " + scorePerSecond.ToString("0.00");
+            lblPretzelPerClick.Content = "per click: " + scorePerClick.ToString("0.00");
             
             // Update Powerups
             grandma.UpdateFrame();
@@ -68,6 +69,16 @@ namespace ClickerGame
 
             Properties.Settings.Default.Score = score;
             Properties.Settings.Default.Save();
+
+            //Autoclicker Upgrade einblenden
+            if(!autoclicker.purchasedUpgrade&& autoclicker.upgradeAvailable)
+            {
+                btnAutoClickerUpgrade.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                btnAutoClickerUpgrade.Visibility = Visibility.Hidden;
+            }
         }
 
         private void Upgrade_Click(object sender, RoutedEventArgs e)
@@ -84,12 +95,14 @@ namespace ClickerGame
 
         private void BtnEasterEgg_Click(object sender, RoutedEventArgs e)
         {
-
+            MessageBox.Show("Sollte eigentlich was passieren :o");
         }
 
         private void BtnAutoClickerUpgrade_Click(object sender, RoutedEventArgs e)
         {
-            //clickerUpgrade = false;
+            autoclicker.purchasedUpgrade = true;
+            autoclicker.upgradeAvailable = false;
+            scorePerClick +=  (float)Math.Pow(autoclicker.count, 1.08);
         }
 
 
