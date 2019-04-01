@@ -60,7 +60,7 @@
             <Setter Property="Height" Value="60"/>
             <Setter Property="Background" Value="WhiteSmoke"/>
             <Setter Property="BorderThickness" Value="6"/>
-            <Setter Property="BorderBrush" Value="DarkGray"/>
+            <Setter Property="BorderBrush" Value="red"/>
         </Style>
 
         <!--Style for the Costs label-->
