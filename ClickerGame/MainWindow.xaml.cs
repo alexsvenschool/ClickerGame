@@ -18,9 +18,9 @@ namespace ClickerGame
 {    
     public partial class MainWindow : Window
     {
-        public static float score = 0;
-        public static float scorePerSecond = 3000;
-        public static float scorePerClick = 1;
+        public static float score = Properties.Settings.Default.Score;
+        public static float scorePerSecond = Properties.Settings.Default.SPS;
+        public static float scorePerClick = Properties.Settings.Default.SPC;
         private DateTime millis = DateTime.Now;
         PowerUp grandma, cafetria, bakery, autoclicker, factory;       
 
@@ -29,7 +29,7 @@ namespace ClickerGame
             InitializeComponent();
 
             // Powerups initialisieren
-            autoclicker = new PowerUp(btnAutoClick, lblAutoClickerCosts, lblAutoClickerCount, 15, 0.1f);
+            autoclicker = new PowerUp(btnAutoClick, lblAutoClickerCosts, lblAutoClickerCount, 1, 0.1f);
             grandma = new PowerUp(btnGrandma, lblGrandmaCosts, lblGrandmaCount, 500, 5);
             cafetria = new PowerUp(btnCafeteria, lblCafeteriaCosts, lblCafeteriaCount, 10000, 50);
             bakery = new PowerUp(btnBakery, lblBakeryCosts, lblBakeryCount, 30000, 500);
@@ -42,6 +42,13 @@ namespace ClickerGame
             };
             fps.Tick += UpdateFrame;              
             fps.Start();
+
+            DispatcherTimer saveGameTicker = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(20)
+            };
+            saveGameTicker.Tick += SaveGame;
+            saveGameTicker.Start();
         }
 
         private void UpdateFrame(object sender, EventArgs e)
@@ -57,7 +64,10 @@ namespace ClickerGame
             cafetria.UpdateFrame();
             bakery.UpdateFrame();
             autoclicker.UpdateFrame();
-            factory.UpdateFrame();            
+            factory.UpdateFrame();
+
+            Properties.Settings.Default.Score = score;
+            Properties.Settings.Default.Save();
         }
 
         private void Upgrade_Click(object sender, RoutedEventArgs e)
@@ -75,6 +85,36 @@ namespace ClickerGame
         private void BtnEasterEgg_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void BtnAutoClickerUpgrade_Click(object sender, RoutedEventArgs e)
+        {
+            //clickerUpgrade = false;
+        }
+
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.R && Keyboard.Modifiers == ModifierKeys.Control)
+            {
+                ResetGame();
+            }
+        }
+
+        private void ResetGame()
+        {
+            Properties.Settings.Default.Reset();
+            Properties.Settings.Default.Save();
+            score = Properties.Settings.Default.Score;
+            scorePerSecond = Properties.Settings.Default.SPS;
+            scorePerClick = Properties.Settings.Default.SPC;
+        }
+
+        private void SaveGame(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Score = score;
+            Properties.Settings.Default.SPS = scorePerSecond;
+            Properties.Settings.Default.SPC = scorePerClick;
         }
     }
 }

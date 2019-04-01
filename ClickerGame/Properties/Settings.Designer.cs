@@ -25,13 +25,37 @@ namespace ClickerGame.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10")]
-        public int Hertz {
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public float Score {
             get {
-                return ((int)(this["Hertz"]));
+                return ((float)(this["Score"]));
             }
             set {
-                this["Hertz"] = value;
+                this["Score"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public float SPS {
+            get {
+                return ((float)(this["SPS"]));
+            }
+            set {
+                this["SPS"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public float SPC {
+            get {
+                return ((float)(this["SPC"]));
+            }
+            set {
+                this["SPC"] = value;
             }
         }
     }

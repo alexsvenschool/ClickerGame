@@ -13,8 +13,8 @@ namespace ClickerGame
         private readonly Label lblCost;
         private readonly Label lblCount;        
         private readonly int baseCost;
-        private int count = 0;
         private readonly float baseScore;
+        public int count = 0;
 
         public PowerUp(Button btn, Label cost, Label count, int bCost, float bScore)
         {
