@@ -9,18 +9,21 @@ namespace ClickerGame
 {    
     class PowerUp
     {
+        private readonly Button button;
         private readonly Label lblCost;
         private readonly Label lblCount;        
         private readonly int baseCost;
         private int count = 0;
         private readonly float baseScore;
 
-        public PowerUp(Label cost, Label count, int bCost, float bScore)
+        public PowerUp(Button btn, Label cost, Label count, int bCost, float bScore)
         {
             lblCost = cost;
             lblCount = count;
             baseCost = bCost;
             baseScore = bScore;
+            button = btn;
+            btn.Tag = this;
         }
 
         public void OnClick()
@@ -44,11 +47,21 @@ namespace ClickerGame
         {
             lblCost.Content = NewCost();
             lblCount.Content = count;
+            if(NewCost() > MainWindow.score)
+            {
+                button.IsEnabled = false;
+                lblCost.IsEnabled = false;
+            }
+            else
+            {
+                button.IsEnabled = true;
+                lblCost.IsEnabled = true;
+            }
         }
 
         public int NewCost()
         {
-            return (int)(baseCost * Math.Pow(1.08, count));
+            return (int)(baseCost * Math.Pow(1.15, count));
         }
     }
 }
