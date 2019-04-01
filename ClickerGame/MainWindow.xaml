@@ -197,9 +197,9 @@
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="70"/>
             </Grid.RowDefinitions>
-            <Button Style="{StaticResource UpgradeButton}" x:Name="btnEasterEgg" Content="EasterEgg" Click="Upgrade_Click" Width="425" HorizontalAlignment="Left" Grid.Row="0"/>
-            <Button Style="{StaticResource UpgradeButton}" x:Name="btnAutoClickerUpgrade" Content="Auto clicker upgrade" Click="Upgrade_Click" Width="425" HorizontalAlignment="Left" Grid.Row="1"/>
-            <Button Style="{StaticResource UpgradeButton}" x:Name="btnPower" Content="powerup" Click="Upgrade_Click" Width="425" HorizontalAlignment="Left" Grid.Row="2"/>
+            <Button Style="{StaticResource UpgradeButton}" x:Name="btnEasterEgg" Content="EasterEgg" Width="425" HorizontalAlignment="Left" Grid.Row="0"/>
+            <Button Style="{StaticResource UpgradeButton}" x:Name="btnAutoClickerUpgrade" Content="Auto clicker upgrade" Width="425" HorizontalAlignment="Left" Grid.Row="1" Click="BtnAutoClickerUpgrade_Click"/>
+            <Button Style="{StaticResource UpgradeButton}" x:Name="btnPower" Content="powerup" Width="425" HorizontalAlignment="Left" Grid.Row="2"/>
         </Grid>
 
     </Grid>

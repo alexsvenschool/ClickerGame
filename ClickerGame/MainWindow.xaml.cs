@@ -30,7 +30,7 @@ namespace ClickerGame
             InitializeComponent();
 
             // Powerups initialisieren
-            autoclicker = new PowerUp(btnAutoClick, lblAutoClickerCosts, lblAutoClickerCount, 15, 0.1f);
+            autoclicker = new PowerUp(btnAutoClick, lblAutoClickerCosts, lblAutoClickerCount, 15, 3);
             grandma = new PowerUp(btnGrandma, lblGrandmaCosts, lblGrandmaCount, 500, 5);
             cafetria = new PowerUp(btnCafeteria, lblCafeteriaCosts, lblCafeteriaCount, 10000, 50);
             bakery = new PowerUp(btnBakery, lblBakeryCosts, lblBakeryCount, 30000, 500);
