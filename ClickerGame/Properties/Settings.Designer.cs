@@ -58,5 +58,65 @@ namespace ClickerGame.Properties {
                 this["SPC"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int AutoCount {
+            get {
+                return ((int)(this["AutoCount"]));
+            }
+            set {
+                this["AutoCount"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int GrandmaCount {
+            get {
+                return ((int)(this["GrandmaCount"]));
+            }
+            set {
+                this["GrandmaCount"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int CafeteriaCount {
+            get {
+                return ((int)(this["CafeteriaCount"]));
+            }
+            set {
+                this["CafeteriaCount"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int BakeryCount {
+            get {
+                return ((int)(this["BakeryCount"]));
+            }
+            set {
+                this["BakeryCount"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int FactoryCount {
+            get {
+                return ((int)(this["FactoryCount"]));
+            }
+            set {
+                this["FactoryCount"] = value;
+            }
+        }
     }
 }
