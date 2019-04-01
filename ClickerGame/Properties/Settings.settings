@@ -2,8 +2,14 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ClickerGame.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="Hertz" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">10</Value>
+    <Setting Name="Score" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="SPS" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="SPC" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">1</Value>
     </Setting>
   </Settings>
 </SettingsFile>

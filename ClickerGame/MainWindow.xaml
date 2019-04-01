@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClickerGame"
         mc:Ignorable="d"
-        Title="Pretzel Clicker" Height="800" Width="1200">
+        Title="Pretzel Clicker" Height="800" Width="1200" KeyDown="Window_KeyDown"
+        >
     <Window.Resources>
         <!--Style for the ClickField-->
         <Style x:Key="ClickField" TargetType="Button">
@@ -114,7 +115,13 @@
     </Window.Background>
 
     <Grid>
-        <Grid HorizontalAlignment="Left" Height="750" Margin="10,70,0,0" VerticalAlignment="Top" Width="180" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="108*"/>
+            <ColumnDefinition Width="475*"/>
+        </Grid.ColumnDefinitions>
+        <Grid HorizontalAlignment="Left" Height="750" Margin="4,70,0,-50" VerticalAlignment="Top" Width="180" Grid.ColumnSpan="2" Grid.Column="1" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="70"/>
@@ -130,7 +137,7 @@
             <Button Style="{StaticResource UpgradeButton}" x:Name="btnFactory" Content="Factory" Grid.Row="5" Click="Upgrade_Click"/>
             <Button Style="{StaticResource UpgradeButton}" x:Name="btnAutoClick" Content="AutoClicker" Grid.Row="1" Click="Upgrade_Click"/>
         </Grid>
-        <Grid>
+        <Grid Grid.ColumnSpan="4">
             <Grid HorizontalAlignment="Left" Height="430" Margin="380,70,0,60" VerticalAlignment="Top" Width="55">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="70"/>
@@ -149,7 +156,7 @@
             </Grid>
         </Grid>
 
-        <Grid HorizontalAlignment="Left" Height="430" Margin="195,70,0,60" VerticalAlignment="Top" Width="180">
+        <Grid HorizontalAlignment="Left" Height="430" Margin="169,70,0,0" VerticalAlignment="Top" Width="180" Grid.ColumnSpan="2" Grid.Column="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="70"/>
@@ -165,12 +172,12 @@
             <Label Style="{StaticResource CostsLable}" x:Name="lblFactoryCosts" Grid.Row="5"/>
             <Label Style="{StaticResource CostsLable}" x:Name="lblAutoClickerCosts" Grid.Row="1" />
         </Grid>
-        <Grid>
+        <Grid Grid.ColumnSpan="4">
             <Button Style="{StaticResource Menue}" x:Name="btnPlay" Content="Spielen" Margin="0,0,0,130" Visibility="Hidden"/>
             <Button Style="{StaticResource Menue}" x:Name="btnOptions" Content="Optionen" Margin="0,0,0,70" Visibility="Hidden"/>
             <Button Style="{StaticResource Menue}" x:Name="btnExit" Content="Exit" Margin="0,0,0,10" Visibility="Hidden"/>
         </Grid>
-        <Grid HorizontalAlignment="Left" Height="70" Margin="10,5,0,0" VerticalAlignment="Top">
+        <Grid HorizontalAlignment="Left" Height="70" Margin="4,5,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3" Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="440"/>
                 <ColumnDefinition Width="370"/>
@@ -183,21 +190,21 @@
             <Label Style="{StaticResource PretzelLabel}" x:Name="lblAutoPretzel" Content="Per second: " AutomationProperties.IsColumnHeader="True" Width="360" Grid.Column="1"/>
             <Label Style="{StaticResource PretzelLabel}" x:Name="lblPretzelPerClick" Content="Per Click: " AutomationProperties.IsColumnHeader="True" Width="360" Grid.Column="2"/>
         </Grid>
-        <Grid HorizontalAlignment="Right" Height="680" Margin="0,75,10,0" VerticalAlignment="Top" Width="730" >
+        <Grid HorizontalAlignment="Right" Height="680" Margin="0,75,10,0" VerticalAlignment="Top" Width="730" Grid.Column="3" >
             <Button Style="{StaticResource ClickField}" x:Name="btnClickField" Cursor="Hand" Click="BtnClickField_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="Images/Bretzel.png" />
                 </Button.Background>
             </Button>
         </Grid>
-        <Grid HorizontalAlignment="Left" Height="210" Margin="10,540,0,0" VerticalAlignment="Top" Width="430">
+        <Grid HorizontalAlignment="Left" Height="210" Margin="4,540,0,0" VerticalAlignment="Top" Width="430" Grid.ColumnSpan="3" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="70"/>
             </Grid.RowDefinitions>
             <Button Style="{StaticResource UpgradeButton}" x:Name="btnEasterEgg" Content="EasterEgg" Click="Upgrade_Click" Width="425" HorizontalAlignment="Left" Grid.Row="0"/>
-            <Button Style="{StaticResource UpgradeButton}" x:Name="btnAutoClickerUpgrade" Content="Autoclickeripgrade" Click="Upgrade_Click" Width="425" HorizontalAlignment="Left" Grid.Row="1"/>
+            <Button Style="{StaticResource UpgradeButton}" x:Name="btnAutoClickerUpgrade" Content="Autoclickeripgrade" Click="BtnAutoClickerUpgrade_Click" Width="425" HorizontalAlignment="Left" Grid.Row="1" Visibility="Hidden"/>
             <Button Style="{StaticResource UpgradeButton}" x:Name="btnPower" Content="powerup" Click="Upgrade_Click" Width="425" HorizontalAlignment="Left" Grid.Row="2"/>
         </Grid>
 
