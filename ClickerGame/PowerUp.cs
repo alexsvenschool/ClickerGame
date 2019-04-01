@@ -49,13 +49,13 @@ namespace ClickerGame
             lblCount.Content = count;
             if(NewCost() > MainWindow.score)
             {
-                button.IsEnabled = false;
-                lblCost.IsEnabled = false;
+                button.Disable();
+                lblCost.Disable();
             }
             else
             {
-                button.IsEnabled = true;
-                lblCost.IsEnabled = true;
+                button.Enable();
+                lblCost.Enable();
             }
         }
 

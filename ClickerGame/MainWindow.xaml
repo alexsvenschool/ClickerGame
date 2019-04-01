@@ -190,6 +190,6 @@
                 </Button.Background>
             </Button>
         </Grid>
-        <Button Style="{StaticResource UpgradeButton}" x:Name="btnEasterEgg" Content="EasterEgg" Click="Upgrade_Click" Margin="10,700,0,0" Width="420" HorizontalAlignment="Left"/>
+        <Button Style="{StaticResource UpgradeButton}" x:Name="btnEasterEgg" Content="EasterEgg" Click="BtnEasterEgg_Click" Margin="10,700,0,0" Width="420" HorizontalAlignment="Left"/>
     </Grid>
 </Window>

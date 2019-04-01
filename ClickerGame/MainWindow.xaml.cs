@@ -71,5 +71,10 @@ namespace ClickerGame
         {
             score += scorePerClick;
         }
+
+        private void BtnEasterEgg_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
