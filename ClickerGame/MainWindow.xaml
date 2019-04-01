@@ -150,7 +150,7 @@
             </Grid>
         </Grid>
 
-        <Grid HorizontalAlignment="Left" Height="430" Margin="169,70,0,0" VerticalAlignment="Top" Width="180" Grid.ColumnSpan="2" Grid.Column="2">
+        <Grid HorizontalAlignment="Left" Height="430" Margin="195,70,0,0" VerticalAlignment="Top" Width="180" Grid.ColumnSpan="2" Grid.Column="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="70"/>

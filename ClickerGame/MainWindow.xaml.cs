@@ -22,7 +22,8 @@ namespace ClickerGame
         public static float scorePerSecond = Properties.Settings.Default.SPS;
         public static float scorePerClick = Properties.Settings.Default.SPC;
         private DateTime millis = DateTime.Now;
-        PowerUp grandma, cafetria, bakery, autoclicker, factory;       
+        PowerUp grandma, cafetria, bakery, autoclicker, factory;
+        
 
         public MainWindow()
         {
@@ -34,6 +35,12 @@ namespace ClickerGame
             cafetria = new PowerUp(btnCafeteria, lblCafeteriaCosts, lblCafeteriaCount, 10000, 50);
             bakery = new PowerUp(btnBakery, lblBakeryCosts, lblBakeryCount, 30000, 500);
             factory = new PowerUp(btnFactory, lblFactoryCosts, lblFactoryCount, 8000000, 5000);
+
+            autoclicker.count = Properties.Settings.Default.AutoCount;
+            grandma.count = Properties.Settings.Default.GrandmaCount;
+            cafetria.count = Properties.Settings.Default.CafeteriaCount;
+            bakery.count = Properties.Settings.Default.BakeryCount;
+            factory.count = Properties.Settings.Default.FactoryCount;
 
             // UI Update
             DispatcherTimer fps = new DispatcherTimer
@@ -108,10 +115,20 @@ namespace ClickerGame
             score = Properties.Settings.Default.Score;
             scorePerSecond = Properties.Settings.Default.SPS;
             scorePerClick = Properties.Settings.Default.SPC;
+            autoclicker.count = Properties.Settings.Default.AutoCount;
+            grandma.count = Properties.Settings.Default.GrandmaCount;
+            cafetria.count = Properties.Settings.Default.CafeteriaCount;
+            bakery.count = Properties.Settings.Default.BakeryCount;
+            factory.count = Properties.Settings.Default.FactoryCount;
         }
 
         private void SaveGame(object sender, EventArgs e)
         {
+            Properties.Settings.Default.AutoCount = autoclicker.count;
+            Properties.Settings.Default.GrandmaCount = grandma.count;
+            Properties.Settings.Default.CafeteriaCount = cafetria.count;
+            Properties.Settings.Default.BakeryCount = bakery.count;
+            Properties.Settings.Default.FactoryCount = factory.count;
             Properties.Settings.Default.Score = score;
             Properties.Settings.Default.SPS = scorePerSecond;
             Properties.Settings.Default.SPC = scorePerClick;
