@@ -30,14 +30,10 @@ namespace ClickerGame
 
             // Powerups initialisieren
             autoclicker = new PowerUp(btnAutoClick, lblAutoClickerCosts, lblAutoClickerCount, 15, 0.1f);
-
             grandma = new PowerUp(btnGrandma, lblGrandmaCosts, lblGrandmaCount, 500, 5);
-
             cafetria = new PowerUp(btnCafeteria, lblCafeteriaCosts, lblCafeteriaCount, 10000, 50);
-
-            factory = new PowerUp(btnFactory, lblFactoryCosts, lblFactoryCount, 30000, 500);
-
-            bakery = new PowerUp(btnBakery, lblBakeryCosts, lblBakeryCount, 800000, 2500);
+            bakery = new PowerUp(btnBakery, lblBakeryCosts, lblBakeryCount, 30000, 500);
+            factory = new PowerUp(btnFactory, lblFactoryCosts, lblFactoryCount, 8000000, 5000);
 
             // UI Update
             DispatcherTimer fps = new DispatcherTimer
