@@ -23,6 +23,7 @@ namespace ClickerGame
         public static float scorePerClick = Properties.Settings.Default.SPC;
         private DateTime millis = DateTime.Now;
         PowerUp grandma, cafetria, bakery, autoclicker, factory;
+        SpecialPowerUps easteregg;
         
 
         public MainWindow()
@@ -30,17 +31,22 @@ namespace ClickerGame
             InitializeComponent();
 
             // Powerups initialisieren
-            autoclicker = new PowerUp(btnAutoClick, lblAutoClickerCosts, lblAutoClickerCount, 15, 3);
-            grandma = new PowerUp(btnGrandma, lblGrandmaCosts, lblGrandmaCount, 500, 5);
-            cafetria = new PowerUp(btnCafeteria, lblCafeteriaCosts, lblCafeteriaCount, 10000, 50);
-            bakery = new PowerUp(btnBakery, lblBakeryCosts, lblBakeryCount, 30000, 500);
-            factory = new PowerUp(btnFactory, lblFactoryCosts, lblFactoryCount, 8000000, 5000);
+            autoclicker = new PowerUp(btnAutoClick, lblAutoClickerCosts, lblAutoClickerCount, 15, 2000);
+            grandma     = new PowerUp(btnGrandma, lblGrandmaCosts, lblGrandmaCount, 500, 50);
+            cafetria    = new PowerUp(btnCafeteria, lblCafeteriaCosts, lblCafeteriaCount, 10000, 200);
+            bakery      = new PowerUp(btnBakery, lblBakeryCosts, lblBakeryCount, 30000, 1000);
+            factory     = new PowerUp(btnFactory, lblFactoryCosts, lblFactoryCount, 8000000, 10000);
+            
+            // SpecialPowerUps initialisieren
+            easteregg   = new SpecialPowerUps(btnEasterEgg, lblEasteregg,5000);
 
-            autoclicker.count = Properties.Settings.Default.AutoCount;
-            grandma.count = Properties.Settings.Default.GrandmaCount;
-            cafetria.count = Properties.Settings.Default.CafeteriaCount;
-            bakery.count = Properties.Settings.Default.BakeryCount;
-            factory.count = Properties.Settings.Default.FactoryCount;
+            // Werte aus den Properties holen
+            autoclicker.count   = Properties.Settings.Default.AutoCount;
+            grandma.count       = Properties.Settings.Default.GrandmaCount;
+            cafetria.count      = Properties.Settings.Default.CafeteriaCount;
+            bakery.count        = Properties.Settings.Default.BakeryCount;
+            factory.count       = Properties.Settings.Default.FactoryCount;
+            easteregg.baseCost  = Properties.Settings.Default.EastereggBaseCost;
 
             // UI Update
             DispatcherTimer fps = new DispatcherTimer
@@ -52,7 +58,7 @@ namespace ClickerGame
 
             DispatcherTimer saveGameTicker = new DispatcherTimer
             {
-                Interval = TimeSpan.FromSeconds(20)
+                Interval = TimeSpan.FromSeconds(5)
             };
             saveGameTicker.Tick += SaveGame;
             saveGameTicker.Start();
@@ -63,9 +69,10 @@ namespace ClickerGame
             //Score Update            
             score += scorePerSecond * ((float)(DateTime.Now - millis).TotalMilliseconds / 1000);
             millis = DateTime.Now;
-            lblPretzel.Content = "pretzel: " + (int)score;
-            lblAutoPretzel.Content = "per second: " + scorePerSecond.ToString("0.00");
-            lblPretzelPerClick.Content = "per click: " + scorePerClick.ToString("0.00");
+
+            lblPretzel.Content          = "pretzel: " + (int)score;
+            lblAutoPretzel.Content      = "per second: " + scorePerSecond.ToString("0.00");
+            lblPretzelPerClick.Content  = "per click: " + scorePerClick.ToString("0.00");
             
             // Update Powerups
             grandma.UpdateFrame();
@@ -74,11 +81,11 @@ namespace ClickerGame
             autoclicker.UpdateFrame();
             factory.UpdateFrame();
 
-            Properties.Settings.Default.Score = score;
-            Properties.Settings.Default.Save();
+            // Update SpecialPowerUps
+            easteregg.UpdateFrame();
 
             //Autoclicker Upgrade einblenden
-            if(!autoclicker.purchasedUpgrade&& autoclicker.upgradeAvailable)
+            if(!autoclicker.purchasedUpgrade && autoclicker.upgradeAvailable)
             {
                 btnAutoClickerUpgrade.Visibility = Visibility.Visible;
             }
@@ -102,7 +109,7 @@ namespace ClickerGame
 
         private void BtnEasterEgg_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Sollte eigentlich was passieren :o");
+            easteregg.EasterEgg();
         }
 
         private void BtnAutoClickerUpgrade_Click(object sender, RoutedEventArgs e)
@@ -125,26 +132,28 @@ namespace ClickerGame
         {
             Properties.Settings.Default.Reset();
             Properties.Settings.Default.Save();
-            score = Properties.Settings.Default.Score;
-            scorePerSecond = Properties.Settings.Default.SPS;
-            scorePerClick = Properties.Settings.Default.SPC;
-            autoclicker.count = Properties.Settings.Default.AutoCount;
-            grandma.count = Properties.Settings.Default.GrandmaCount;
-            cafetria.count = Properties.Settings.Default.CafeteriaCount;
-            bakery.count = Properties.Settings.Default.BakeryCount;
-            factory.count = Properties.Settings.Default.FactoryCount;
+            score               = Properties.Settings.Default.Score;
+            scorePerSecond      = Properties.Settings.Default.SPS;
+            scorePerClick       = Properties.Settings.Default.SPC;
+            autoclicker.count   = Properties.Settings.Default.AutoCount;
+            grandma.count       = Properties.Settings.Default.GrandmaCount;
+            cafetria.count      = Properties.Settings.Default.CafeteriaCount;
+            bakery.count        = Properties.Settings.Default.BakeryCount;
+            factory.count       = Properties.Settings.Default.FactoryCount;
+            easteregg.baseCost  = Properties.Settings.Default.EastereggBaseCost;
         }
 
         private void SaveGame(object sender, EventArgs e)
         {
-            Properties.Settings.Default.AutoCount = autoclicker.count;
-            Properties.Settings.Default.GrandmaCount = grandma.count;
-            Properties.Settings.Default.CafeteriaCount = cafetria.count;
-            Properties.Settings.Default.BakeryCount = bakery.count;
-            Properties.Settings.Default.FactoryCount = factory.count;
-            Properties.Settings.Default.Score = score;
-            Properties.Settings.Default.SPS = scorePerSecond;
-            Properties.Settings.Default.SPC = scorePerClick;
+            Properties.Settings.Default.AutoCount           = autoclicker.count;
+            Properties.Settings.Default.GrandmaCount        = grandma.count;
+            Properties.Settings.Default.CafeteriaCount      = cafetria.count;
+            Properties.Settings.Default.BakeryCount         = bakery.count;
+            Properties.Settings.Default.FactoryCount        = factory.count;
+            Properties.Settings.Default.Score               = score;
+            Properties.Settings.Default.SPS                 = scorePerSecond;
+            Properties.Settings.Default.SPC                 = scorePerClick;
+            Properties.Settings.Default.EastereggBaseCost   = easteregg.NewCost();
         }
     }
 }

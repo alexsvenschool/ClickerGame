@@ -18,14 +18,15 @@ namespace ClickerGame
         public bool purchasedUpgrade = false;
         public bool upgradeAvailable = false;
 
+        // Konstruktor
         public PowerUp(Button btn, Label cost, Label count, int bCost, float bScore)
         {
-            lblCost = cost;
-            lblCount = count;
-            baseCost = bCost;
-            baseScore = bScore;
-            button = btn;
-            btn.Tag = this;
+            lblCost     = cost;
+            lblCount    = count;
+            baseCost    = bCost;
+            baseScore   = bScore;
+            button      = btn;
+            btn.Tag     = this;
         }
 
         public void OnClick()
@@ -41,7 +42,7 @@ namespace ClickerGame
             {
                 upgradeAvailable = true;
                 purchasedUpgrade = false;
-            }            
+            }
         }
 
         public float ScorePerSecond()

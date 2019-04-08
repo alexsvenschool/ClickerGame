@@ -118,5 +118,17 @@ namespace ClickerGame.Properties {
                 this["FactoryCount"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5000")]
+        public int EastereggBaseCost {
+            get {
+                return ((int)(this["EastereggBaseCost"]));
+            }
+            set {
+                this["EastereggBaseCost"] = value;
+            }
+        }
     }
 }

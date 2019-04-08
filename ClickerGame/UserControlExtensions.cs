@@ -10,7 +10,8 @@ namespace ClickerGame
 {
     public static class UserControlExtensions
     {
-        public static Brush background = (Brush)new BrushConverter().ConvertFrom("#80A9A9A9");
+        public static Brush background = (Brush)new BrushConverter().ConvertFrom("#80A9A9A9"); // Hintergrund mit Deckkraft von 80%
+
         public static void Disable (this Button btn){
             btn.Foreground = Brushes.DarkGray;
             btn.Background = Brushes.Transparent;

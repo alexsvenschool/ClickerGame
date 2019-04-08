@@ -191,15 +191,17 @@
                 </Button.Background>
             </Button>
         </Grid>
-        <Grid HorizontalAlignment="Left" Height="210" Margin="4,540,0,0" VerticalAlignment="Top" Width="430" Grid.ColumnSpan="3" Grid.Column="1">
+        <Button Style="{StaticResource UpgradeButton}" x:Name="btnAutoClickerUpgrade" Margin="10,690,0,0" Content="Auto clicker upgrade" Width="430" Grid.Column="0" HorizontalAlignment="Left" Grid.Row="1" Click="BtnAutoClickerUpgrade_Click"/>
+        <Grid HorizontalAlignment="Left" Height="70" Margin="10,610,0,0" VerticalAlignment="Top" Width="430" Grid.ColumnSpan="3" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="70"/>
-                <RowDefinition Height="70"/>
-                <RowDefinition Height="70"/>
             </Grid.RowDefinitions>
-            <Button Style="{StaticResource UpgradeButton}" x:Name="btnEasterEgg" Content="EasterEgg" Width="425" HorizontalAlignment="Left" Grid.Row="0"/>
-            <Button Style="{StaticResource UpgradeButton}" x:Name="btnAutoClickerUpgrade" Content="Auto clicker upgrade" Width="425" HorizontalAlignment="Left" Grid.Row="1" Click="BtnAutoClickerUpgrade_Click"/>
-            <Button Style="{StaticResource UpgradeButton}" x:Name="btnPower" Content="powerup" Width="425" HorizontalAlignment="Left" Grid.Row="2"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="310"/>
+                <ColumnDefinition Width="120"/>
+            </Grid.ColumnDefinitions>
+            <Button Style="{StaticResource UpgradeButton}" x:Name="btnEasterEgg" Content="EasterEgg" Width="300" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="0" Click="BtnEasterEgg_Click"/>
+            <Label Style="{StaticResource CostsLable}" x:Name="lblEasteregg" Width="120" Grid.Column="1" Grid.Row="0" />
         </Grid>
 
     </Grid>
